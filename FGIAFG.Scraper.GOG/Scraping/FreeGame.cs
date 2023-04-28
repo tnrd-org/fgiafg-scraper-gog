@@ -5,7 +5,7 @@ namespace FGIAFG.Scraper.GOG.Scraping;
 
 public class FreeGame
 {
-    public FreeGame(string title, string imageUrl, string url, DateTime startDate, DateTime endDate)
+    public FreeGame(string title, string imageUrl, string url, DateTime? startDate, DateTime endDate)
     {
         Title = title;
         ImageUrl = imageUrl;
@@ -17,7 +17,7 @@ public class FreeGame
     public string Title { get; }
     public string ImageUrl { get; }
     public string Url { get; }
-    public DateTime StartDate { get; }
+    public DateTime? StartDate { get; }
     public DateTime EndDate { get; }
 
     public string CalculatePersistentHash()

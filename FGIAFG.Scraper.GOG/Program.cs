@@ -67,7 +67,15 @@ internal class Program
     private static Task<IResult> GetGames(DbContext dbContext, HttpContext context)
     {
         IQueryable<GameModel> gameModels =
-            dbContext.Games.Where(x => x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now);
+            dbContext.Games.Where(x =>
+                (x.StartDate.HasValue && x.StartDate.Value <= DateTime.Now && x.EndDate.HasValue &&
+                 x.EndDate >= DateTime.Now)
+                ||
+                (!x.StartDate.HasValue && !x.EndDate.HasValue)
+                ||
+                (x.StartDate.HasValue && x.StartDate.Value <= DateTime.Now && !x.EndDate.HasValue)
+                ||
+                (!x.StartDate.HasValue && x.EndDate.HasValue && x.EndDate >= DateTime.Now));
 
         return Task.FromResult<IResult>(TypedResults.Ok(gameModels));
     }

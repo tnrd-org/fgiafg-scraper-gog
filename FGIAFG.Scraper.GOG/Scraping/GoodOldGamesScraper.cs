@@ -60,9 +60,9 @@ internal class GoodOldGamesScraper
         List<FreeGame> freeGames = new()
         {
             new FreeGame(data.Title,
-                $"https://www.gog.com{data.GameUrl.Replace("/de/", "/en/")}",
                 $"https://images-1.gog-statics.com/{data.Logo.Image}.png",
-                DateTime.UtcNow,
+                $"https://www.gog.com{data.GameUrl.Replace("/de/", "/en/")}",
+                null,
                 DateTimeOffset.FromUnixTimeMilliseconds(data.EndTime).UtcDateTime)
         };
 
